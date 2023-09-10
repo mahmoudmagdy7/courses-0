@@ -4,15 +4,15 @@ const siteConfig = {
   ApiUrl: "https://education-fijh.onrender.com",
   menuList: [
     {
-      title: "Main Dashboard",
+      title: "الرئيسية",
       link: "/f35-fighter",
     },
     {
-      title: "Add Funds",
+      title: "المحافظ",
       link: "add-funds",
     },
     {
-      title: "Students",
+      title: "الطلاب",
       link: "students",
     },
   ],

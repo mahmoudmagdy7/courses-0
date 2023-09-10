@@ -14,7 +14,8 @@ import ThemProvider from "./components/ThemProvider";
 import AdminDashboardLayout from "./pages/admin/AdminDashboardLayout";
 import MainDashboard from "./pages/admin/MainDashboard";
 import Students from "./pages/admin/Students";
-import AddFunds from "./pages/admin/AddFunds";
+import AdminProtection from "./components/AdminProtection";
+import Wallets from "./pages/admin/Wallets";
 
 const route = createBrowserRouter([
   { path: "/auth/login", element: <Login /> },
@@ -23,18 +24,25 @@ const route = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      { path: "/", element: <Home /> },
+      {
+        path: "/",
+        element: <Home />,
+      },
       { path: "/student-dashboard", element: <StudentDashboard /> },
     ],
   },
   {
     path: "/f35-fighter",
-    element: <AdminDashboardLayout />,
+    element: (
+      <AdminProtection>
+        <AdminDashboardLayout />
+      </AdminProtection>
+    ),
     children: [
       // Admin Dashboard routes
       { path: "", element: <MainDashboard /> },
       { path: "students", element: <Students /> },
-      { path: "add-funds", element: <AddFunds /> },
+      { path: "add-funds", element: <Wallets /> },
     ],
   },
 ]);

@@ -7,6 +7,15 @@ import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import siteConfig from "/public/site-config";
 
+/**
+   =========================================+
+   * TODO:                                  |
+   * ? Password validation                  |
+   * * National ID validation               |
+   * ! Handling the errors with backend     | 
+   =========================================+
+   */
+
 export default function Login() {
   const router = useNavigate();
   // Show and hide password
