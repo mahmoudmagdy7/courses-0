@@ -1,0 +1,43 @@
+$light: (
+  text-0: #1e293b,
+  text-1: #475569,
+  text-2: #64748b,
+  text-3: #94a3b8,
+  text-5: #fff,
+  text-4: #000000,
+
+  // ==========================
+  primary: #4f46e5,
+  primary-hover: #4338ca,
+
+  // ==========================
+  bg-primary-20: rgb(79, 70, 229, 20%),
+  bg-secondary: #e2e8f0,
+  bg-main: #f8fafc,
+  fg-main: #ffffff,
+  // ========================== Borders
+  br-card: #e8e9ea,
+  br-input: #e8e9ea,
+);
+
+$dark: (
+  text-0: #f8fafc,
+  text-1: #bfbfbf,
+  text-2: #a4a4a4,
+  text-3: #94a3b8,
+  text-5: #202020,
+  text-4: #000000,
+
+  // ==========================
+  primary: #09bc9b,
+  primary-hover: #059d81,
+
+  // ==========================
+  bg-primary-20: rgb(79, 70, 229, 20%),
+  bg-secondary: #e2e8f0,
+  bg-main: #1a1a1a,
+  fg-main: #222423,
+  // ========================== Borders
+  br-card: #232323,
+  br-input: #303432,
+);

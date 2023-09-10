@@ -1,0 +1,55 @@
+// =========================================
+
+.cbg-primary {
+  background-color: getColor(primary); //#4f46e5
+}
+.cbg-primary-hover:hover {
+  background-color: getColor(primary-hover); //#4338ca
+}
+.cbg-main {
+  background-color: getColor(bg-main); //#f8fafc
+}
+.cbg-secondary {
+  background-color: getColor(bg-secondary); //#e2e8f0
+}
+.cbg-primary-20 {
+  background-color: getColor(bg-primary-20); // rgb(79, 70, 229, 20%)
+}
+.cfg-main {
+  background-color: getColor(fg-main); //#ffffff
+}
+
+// =========================================
+
+.ct-primary {
+  color: getColor(primary); // #4f46e5
+}
+.ct-0 {
+  color: getColor(text-0); // #1e293b
+}
+.ct-1 {
+  color: getColor(text-1); // #475569
+}
+.ct-2 {
+  color: getColor(text-2); // #64748b
+}
+.ct-3 {
+  color: getColor(text-3); // #94a3b8
+}
+.ct-4 {
+  color: getColor(text-4); // #000000
+}
+.ct-5 {
+  color: getColor(text-5); // #fff
+}
+
+// ============================ borders ==================================
+.c-border-primary {
+  border-color: getColor(primary);
+}
+.br-card {
+  border-color: getColor(br-card);
+}
+.br-input {
+  border-color: getColor(br-input);
+}
