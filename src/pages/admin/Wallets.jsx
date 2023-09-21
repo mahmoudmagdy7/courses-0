@@ -69,13 +69,6 @@ function Wallets() {
 
   useEffect(() => {
     /* Shapes */
-    var svgContainer = document.getElementById("svgContainer");
-    var animItem = bodymovin.loadAnimation({
-      wrapper: svgContainer,
-      animType: "svg",
-      loop: true,
-      path: "https://dev.anthonyfessy.com/check.json",
-    });
   });
   return (
     <>
@@ -97,6 +90,7 @@ function Wallets() {
                   </h3>
                 </div>
               </div>
+
               <form onSubmit={handleSubmit} className="card mt-5 rounded-lg p-5 lg:p-7   border-neutral-800 border br-card   mb-5 ">
                 <label className="mb-5 block">
                   <span className="text-start ct-1">رقم الهاتف : </span>
@@ -151,7 +145,6 @@ function Wallets() {
               </form>
             </div>
           </div>
-          <div id="svgContainer"></div>
         </div>
         <Table
           isHeaderSticky

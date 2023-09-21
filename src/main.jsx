@@ -24,10 +24,8 @@ const route = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
+      { path: "/", element: <Home /> },
+      { path: "/profile/:id", element: <h1> user profile page</h1> },
       { path: "/student-dashboard", element: <StudentDashboard /> },
     ],
   },
@@ -43,6 +41,7 @@ const route = createBrowserRouter([
       { path: "", element: <MainDashboard /> },
       { path: "students", element: <Students /> },
       { path: "add-funds", element: <Wallets /> },
+      { path: "profile/:id", element: <h1> user profile page</h1> },
     ],
   },
 ]);

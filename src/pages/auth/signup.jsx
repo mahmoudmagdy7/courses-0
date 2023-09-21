@@ -72,7 +72,7 @@ export default function SignUp() {
     let formdata = new FormData();
     formdata.append("firstName", firstName.current.value);
     formdata.append("lastName", lastName.current.value);
-    formdata.append("email", firstName.current.value);
+    formdata.append("email", email.current.value);
     formdata.append("password", password.current.value);
     formdata.append("rePassword", rePassword.current.value);
     formdata.append("nationalId", nationalId.current.value);
@@ -82,7 +82,6 @@ export default function SignUp() {
     formdata.append("parentNumber", parentNumber.current.value);
     formdata.append("whatsAppNumber", whatsAppNumber.current.value);
     formdata.append("image", profilePicture.current.files[0]);
-
     try {
       setIsSubmit(true); // Turn on loading spinner
       const data = await axios.post(`${siteConfig.ApiUrl}/auth/signUp`, formdata); // Fetch the data
@@ -92,7 +91,6 @@ export default function SignUp() {
       // Notify the student that login success
       toast.success(" تم تسجيل الدخول بنجاح ");
       toast.loading(" جاري تحويلك للصفحة الرئيسية "); // !redirect the user to home page
-      router("/");
     } catch (error) {
       const { msgError } = error.response.data;
       // if (msgError === 'User not found') {
@@ -110,6 +108,22 @@ export default function SignUp() {
   // ======================== Validation Function =============================
   function handleValidation(e) {
     // Checking if all data id correct enable submitting
+    let formdata = new FormData();
+    formdata.append("firstName", firstName.current.value);
+    formdata.append("lastName", lastName.current.value);
+    formdata.append("email", email.current.value);
+    formdata.append("password", password.current.value);
+    formdata.append("rePassword", rePassword.current.value);
+    formdata.append("nationalId", nationalId.current.value);
+    formdata.append("government", government.current.value);
+    formdata.append("city", city.current.value);
+    formdata.append("phone", phoneNumber.current.value);
+    formdata.append("parentNumber", parentNumber.current.value);
+    formdata.append("whatsAppNumber", whatsAppNumber.current.value);
+    formdata.append("image", profilePicture.current.files[0]);
+    for (const value of formdata.values()) {
+      console.log(value);
+    }
     if (
       firstName.current.value !== "" &&
       lastName.current.value !== "" &&
@@ -562,25 +576,7 @@ export default function SignUp() {
                 <span>تسجيل</span>
               </Button>
             )}
-            <p className="ct-2 text-sm mt-4 text-center">
-              تمتلك حساب ؟
-              <Link className="ct-primary" to="/auth/login">
-                &ensp;تسجيل الدخول
-              </Link>
-            </p>
           </form>
-          <div>
-            <p className="text-center text-s ct-3 mt-10 ">
-              Developed by
-              <Link to="https://www.facebook.com/mahmoudmagdy47" className="hover:text-[#4f46e5] ct-2">
-                Mahmoud Magdy
-              </Link>
-              &
-              <Link to="https://www.facebook.com/ahmedashrafaly22" className="ct-2 hover:text-[#4f46e5]">
-                Ahmed ashraf
-              </Link>
-            </p>
-          </div>
         </div>
       </main>
     </>

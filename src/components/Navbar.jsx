@@ -109,7 +109,7 @@ export default function NavBar(props) {
       )}
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>Features</NavbarItem>
+        <NavbarItem>{/*item*/}</NavbarItem>
 
         <NavbarBrand>
           <p className="font-bold text-inherit ct-0">Physiker</p>

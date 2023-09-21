@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + React</title>
+  <title>Physiker</title>
 </head>
 
 <body class="">
@@ -13,6 +13,18 @@
 
 
 
+  </script>
+  <script>
+
+
+    setInterval(async () => {
+      try {
+        const data = await fetch(`https://education-fijh.onrender.com/users`);
+        console.log('The server loaded again...');
+      } catch (error) {
+        console.log(error);
+      }
+    }, 800000)
   </script>
 </body>
 
