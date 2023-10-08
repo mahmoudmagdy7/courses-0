@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import siteConfig from "../../../public/site-config";
-import { House, MagnifyingGlass, Student, Wallet } from "@phosphor-icons/react"; // Import additional icons
+import { House, MonitorPlay, Student, Wallet } from "@phosphor-icons/react"; // Import additional icons
 import NavBar from "../../components/Navbar";
 
 export default function AdminDashboardLayout() {
@@ -10,6 +10,7 @@ export default function AdminDashboardLayout() {
     "Main Dashboard": House,
     المحافظ: Wallet, // Replace with the actual icon component you want
     الطلاب: Student, // Replace with the actual icon component you want
+    المحاضرات: MonitorPlay, // Replace with the actual icon component you want
     // Add more mappings for other titles as needed
   };
 

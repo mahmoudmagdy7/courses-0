@@ -16,6 +16,11 @@ import MainDashboard from "./pages/admin/MainDashboard";
 import Students from "./pages/admin/Students";
 import AdminProtection from "./components/AdminProtection";
 import Wallets from "./pages/admin/Wallets";
+import Lectures from "./pages/admin/Lectures";
+import Grades from "./components/StudentRelative/Grades";
+import SpecificGrade from "./components/StudentRelative/SpecificGrade";
+import Section from "./components/StudentRelative/Section";
+import Lecture from "./pages/Lecture";
 
 const route = createBrowserRouter([
   { path: "/auth/login", element: <Login /> },
@@ -26,7 +31,16 @@ const route = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/profile/:id", element: <h1> user profile page</h1> },
-      { path: "/student-dashboard", element: <StudentDashboard /> },
+      {
+        path: "/student-dashboard",
+        element: <StudentDashboard />,
+        children: [
+          { path: "", element: <Grades /> },
+          { path: "grade/:specificGradeId", element: <SpecificGrade /> },
+          { path: "section/:specificSectionId", element: <Section /> },
+          { path: "lecture/:lectureId", element: <Lecture /> },
+        ],
+      },
     ],
   },
   {
@@ -41,6 +55,7 @@ const route = createBrowserRouter([
       { path: "", element: <MainDashboard /> },
       { path: "students", element: <Students /> },
       { path: "add-funds", element: <Wallets /> },
+      { path: "lectures", element: <Lectures /> },
       { path: "profile/:id", element: <h1> user profile page</h1> },
     ],
   },

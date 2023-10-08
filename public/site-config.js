@@ -8,6 +8,10 @@ const siteConfig = {
       link: "/f35-fighter",
     },
     {
+      title: "المحاضرات",
+      link: "lectures",
+    },
+    {
       title: "المحافظ",
       link: "add-funds",
     },
