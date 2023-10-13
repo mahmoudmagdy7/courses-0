@@ -2,34 +2,34 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import siteConfig from "../../../public/site-config";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function SpecificGrade() {
-  const [allSections, setAllSections] = useState([]);
-  const { specificGradeId } = useParams();
-  async function getAllSections() {
+function Grades() {
+  const [allGrades, setAllGrades] = useState([]);
+
+  async function getAllGrades() {
     try {
-      const { data } = await axios.get(siteConfig.ApiUrl + `/grades/${specificGradeId}`);
-      setAllSections(data.result.sections);
-      console.log(data.result.sections);
+      const { data } = await axios.get(siteConfig.ApiUrl + "/grades");
+      setAllGrades(data.grade);
+      console.log(data.grade);
     } catch (e) {
       console.log(e);
     }
   }
 
   useEffect(() => {
-    getAllSections();
+    getAllGrades();
   }, []);
   return (
     <div>
       <div className="m-auto">
-        <h2 className="text-4xl"> sections</h2>
+        <h2 className="text-4xl"> grades</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dolorem maiores, molestias ratione unde sit</p>
       </div>
       <div className="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid gap-10 pt-5">
-        {allSections?.map((section) => {
+        {allGrades?.map((grade) => {
           return (
-            <Link to={"/student-dashboard/section/" + section._id} key={section._id}>
+            <Link to={"grade/" + grade._id} key={grade._id}>
               <Card shadow="sm">
                 <CardBody className="overflow-visible p-3">
                   <Image
@@ -42,8 +42,8 @@ function SpecificGrade() {
                   />
                 </CardBody>
                 <CardFooter className="text-small justify-between">
-                  <b>{section.sectionTitle}</b>
-                  {/* <p className="text-default-500"> section : {grade.sections.length}</p> */}
+                  <b>{grade.gradeTitle}</b>
+                  <p className="text-default-500"> section : {grade.sections?.length}</p>
                 </CardFooter>
               </Card>
             </Link>
@@ -54,4 +54,4 @@ function SpecificGrade() {
   );
 }
 
-export default SpecificGrade;
+export default Grades;

@@ -17,10 +17,13 @@ import Students from "./pages/admin/Students";
 import AdminProtection from "./components/AdminProtection";
 import Wallets from "./pages/admin/Wallets";
 import Lectures from "./pages/admin/Lectures";
-import Grades from "./components/StudentRelative/Grades";
-import SpecificGrade from "./components/StudentRelative/SpecificGrade";
-import Section from "./components/StudentRelative/Section";
-import Lecture from "./pages/Lecture";
+import Grades from "./pages/Student/Grades";
+import SpecificGrade from "./pages/Student/SpecificGrade";
+import Section from "./pages/Student/Section";
+import Lecture from "./pages/Lecture/Lecture";
+import LectureLayout from "./pages/Lecture/LectureLayout";
+import Quiz from "./pages/Lecture/Quiz";
+import ChargeWallet from "./pages/Student/ChargeWallet";
 
 const route = createBrowserRouter([
   { path: "/auth/login", element: <Login /> },
@@ -32,13 +35,21 @@ const route = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/profile/:id", element: <h1> user profile page</h1> },
       {
-        path: "/student-dashboard",
+        path: "/student",
         element: <StudentDashboard />,
         children: [
           { path: "", element: <Grades /> },
           { path: "grade/:specificGradeId", element: <SpecificGrade /> },
           { path: "section/:specificSectionId", element: <Section /> },
-          { path: "lecture/:lectureId", element: <Lecture /> },
+          { path: "charge", element: <ChargeWallet /> },
+          {
+            path: "lecture/:lectureId",
+            element: <LectureLayout />,
+            children: [
+              { path: "", element: <Lecture /> },
+              { path: "quiz/:quizId", element: <Quiz /> },
+            ],
+          },
         ],
       },
     ],

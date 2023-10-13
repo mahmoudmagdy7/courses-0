@@ -47,7 +47,7 @@ export default function Login() {
       toast.success(" تم تسجيل الدخول بنجاح ");
       toast.loading(" جاري تحويلك للصفحة الرئيسية "); // !redirect the user to home page
 
-      router("/student-dashboard");
+      router("/student");
     } catch (error) {
       const { msgError } = error.response?.data;
       if (msgError === "User not found") {

@@ -2,34 +2,34 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import siteConfig from "../../../public/site-config";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-function Grades() {
-  const [allGrades, setAllGrades] = useState([]);
-
-  async function getAllGrades() {
+function SpecificGrade() {
+  const [allSections, setAllSections] = useState([]);
+  const { specificGradeId } = useParams();
+  async function getAllSections() {
     try {
-      const { data } = await axios.get(siteConfig.ApiUrl + "/grades");
-      setAllGrades(data.grade);
-      console.log(data.grade);
+      const { data } = await axios.get(siteConfig.ApiUrl + `/grades/${specificGradeId}`);
+      setAllSections(data.result.sections);
+      console.log(data.result);
     } catch (e) {
       console.log(e);
     }
   }
 
   useEffect(() => {
-    getAllGrades();
+    getAllSections();
   }, []);
   return (
     <div>
       <div className="m-auto">
-        <h2 className="text-4xl"> grades</h2>
+        <h2 className="text-4xl"> sections</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dolorem maiores, molestias ratione unde sit</p>
       </div>
       <div className="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid gap-10 pt-5">
-        {allGrades?.map((grade) => {
+        {allSections?.map((section) => {
           return (
-            <Link to={"grade/" + grade.id} key={grade.id}>
+            <Link to={"/student/section/" + section._id} key={section._id}>
               <Card shadow="sm">
                 <CardBody className="overflow-visible p-3">
                   <Image
@@ -42,8 +42,8 @@ function Grades() {
                   />
                 </CardBody>
                 <CardFooter className="text-small justify-between">
-                  <b>{grade.gradeTitle}</b>
-                  <p className="text-default-500"> section : {grade.sections.length}</p>
+                  <b>{section.sectionTitle}</b>
+                  {/* <p className="text-default-500"> section : {grade.sections.length}</p> */}
                 </CardFooter>
               </Card>
             </Link>
@@ -54,4 +54,4 @@ function Grades() {
   );
 }
 
-export default Grades;
+export default SpecificGrade;

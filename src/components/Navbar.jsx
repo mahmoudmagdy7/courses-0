@@ -9,11 +9,10 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Switch,
   VisuallyHidden,
   useSwitch,
 } from "@nextui-org/react";
-import { Bell, MoonStars, Sun } from "@phosphor-icons/react";
+import { Bell, MoonStars, Sun, Wallet } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -51,7 +50,7 @@ export default function NavBar(props) {
   }, []);
 
   return (
-    <Navbar className="cfg-main ct-1 mb-10">
+    <Navbar className="cfg-main ct-1 ">
       <div className="flex flex-col gap-2">
         <Component {...getBaseProps()}>
           <VisuallyHidden>
@@ -75,7 +74,10 @@ export default function NavBar(props) {
 
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
-          <img src="/assets/images/main-logo.png" className="h-14" />
+          <Link to="/">
+            {" "}
+            <img src="/assets/images/main-logo.png" className="h-14" />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
       {/* ============== small screens ===================== */}
@@ -109,11 +111,25 @@ export default function NavBar(props) {
       )}
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>{/*item*/}</NavbarItem>
+        <NavbarItem>
+          {/*item*/}
+
+          <ul>
+            <li>
+              {/* <Link to="charge" className="bg-red-50"> */}
+              <Button to={"/student/charge"} isIconOnly as={Link} color="warning" variant="faded" aria-label="Take a photo" className="text-red-500">
+                <Wallet size="20" />
+              </Button>{" "}
+              {/* </Link> */}
+            </li>
+          </ul>
+        </NavbarItem>
 
         <NavbarBrand>
-          <p className="font-bold text-inherit ct-0">Physiker</p>
-          <img src="/assets/images/main-logo.png" className="h-14" />
+          <Link to="/" className="flex items-center">
+            <p className="font-bold text-inherit ct-0">Physiker</p>
+            <img src="/assets/images/main-logo.png" className="h-14" />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 

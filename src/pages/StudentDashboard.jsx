@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import siteConfig from "../../public/site-config";
-import Grade from "../components/StudentRelative/Grades";
+import Grade from "./Student/Grades";
 import { Outlet } from "react-router-dom";
 
 export default function StudentDashboard() {
@@ -20,7 +20,7 @@ export default function StudentDashboard() {
     // getAllLectures();
   }, []);
   return (
-    <section className="max-w-screen-xl h-[89vh] overflow-y-hidden-hidden m-auto text-center p-5">
+    <section className="h-[calc(100vh-4rem)]  overflow-y-hidden-hidden m-auto text-center ">
       <Outlet />
       {/* <Grade /> */}
     </section>

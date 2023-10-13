@@ -58,7 +58,7 @@ function Wallets() {
         headers: transactionData,
       }); // Fetch the data
       toast.success("تمت إضافة الرصيد \n رصي الطالب الان : " + data.result.balance + "ج");
-
+      console.log(data.result);
       setIsSubmit(false); // Turn off loading spinner after getting the response
     } catch (error) {
       const { msgError } = error.response?.data;
@@ -70,13 +70,14 @@ function Wallets() {
   useEffect(() => {
     /* Shapes */
   });
+  let bg = "/assets/images/9185914.png";
   return (
     <>
       <section className="m-5">
         <h1 className="text-3xl mb-8">المحافظ</h1>
         <Toaster />
-        <div className="sm:px-5">
-          <div className="flex">
+        <div className="sm:px-5 flex gap-x-8">
+          <div className="flex ">
             <div>
               <div className="bg-black bg-opacity-90 h-32 rounded-md w-96  relative">
                 <figure className="absolute h-full m-0">
@@ -143,6 +144,34 @@ function Wallets() {
                   </Link>
                 </p>
               </form>
+            </div>
+          </div>
+          <div className="w-96 shadow-md h-fit">
+            <div className="h-24 w-full bg-gray-800"> Done</div>
+            <div className="bg-white p-8">
+              <div className="flex justify-between border-b pb-2">
+                <p>description</p>
+                <p> value</p>
+              </div>
+              <ul className="mt-2">
+                <li className="flex justify-between mb-2">
+                  <p className="text-gray-700">name</p> <p>ahmed omar</p>
+                </li>{" "}
+                <li className="flex justify-between mb-2">
+                  <p className="text-gray-700">phone</p> <p>01061005364 </p>
+                </li>{" "}
+                <li className="flex justify-between mb-2">
+                  <p className="text-gray-700">amount</p> <p>52 </p>
+                </li>{" "}
+                <li className="flex justify-between items-center mt-5">
+                  <p className="text-gray-700">total balance</p> <p className="text-2xl">5000 EGP </p>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-white h-24 border-t-2 border-dashed relative   ">
+              <span className="inline-flex cbg-main w-6 h-6 translate-x-1/2 -translate-y-1/2 rounded-full"></span>
+              <span className="inline-flex cbg-main w-6 h-6 -translate-x-1/2 -translate-y-1/2 rounded-full absolute end-0"></span>
+              <img src="/assets/images/9185914.png" alt="" className=" m-auto absolute end-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 h-48 " />
             </div>
           </div>
         </div>

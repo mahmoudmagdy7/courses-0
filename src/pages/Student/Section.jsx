@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 function Section() {
   const [allLectures, setAllLectures] = useState([]);
   const { specificSectionId } = useParams();
+  console.log(specificSectionId);
   async function getAllLectures() {
     try {
       const { data } = await axios.get(siteConfig.ApiUrl + `/sections/${specificSectionId}`);
@@ -29,7 +30,7 @@ function Section() {
       <div className="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid gap-10 pt-5">
         {allLectures?.map((lecture) => {
           return (
-            <Link to={"/student-dashboard/lecture/" + lecture._id} key={lecture._id}>
+            <Link to={"/student/lecture/" + lecture._id} key={lecture._id}>
               <Card shadow="sm">
                 <CardBody className="overflow-visible p-3">
                   <Image
