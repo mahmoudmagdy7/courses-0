@@ -24,6 +24,8 @@ import Lecture from "./pages/Lecture/Lecture";
 import LectureLayout from "./pages/Lecture/LectureLayout";
 import Quiz from "./pages/Lecture/Quiz";
 import ChargeWallet from "./pages/Student/ChargeWallet";
+import UserData from "./Data/UserData";
+import StudentInvoice from "./pages/Student/StudentInvoice";
 
 const route = createBrowserRouter([
   { path: "/auth/login", element: <Login /> },
@@ -42,12 +44,20 @@ const route = createBrowserRouter([
           { path: "grade/:specificGradeId", element: <SpecificGrade /> },
           { path: "section/:specificSectionId", element: <Section /> },
           { path: "charge", element: <ChargeWallet /> },
+          { path: "invoice", element: <StudentInvoice /> },
           {
             path: "lecture/:lectureId",
-            element: <LectureLayout />,
+            element: (
+              <UserData>
+                <LectureLayout />{" "}
+              </UserData>
+            ),
             children: [
               { path: "", element: <Lecture /> },
-              { path: "quiz/:quizId", element: <Quiz /> },
+              {
+                path: "quiz/:quizId",
+                element: <Quiz />,
+              },
             ],
           },
         ],

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physiker</title>
+  <script type="module" crossorigin src="/assets/index-59ca2a3f.js"></script>
+  <link rel="stylesheet" href="/assets/index-5ce5658f.css">
+</head>
+
+<body class="">
+  <div id="root"></div>
+  
+  <script>
+
+
+    setInterval(async () => {
+      try {
+        const data = await fetch(`https://education-fijh.onrender.com/users`);
+        console.log('The server loaded again...');
+      } catch (error) {
+        console.log(error);
+      }
+    }, 800000)
+  </script>
+</body>
+
+</html>

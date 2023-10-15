@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import siteConfig from "../../../public/site-config";
 import Cookies from "js-cookie";
@@ -9,6 +9,7 @@ import { Radio, Card, List, ListItem, ListItemPrefix, Typography } from "@materi
 
 function Quiz() {
   const { quizId } = useParams();
+  console.log(quizId);
   const [quiz, setQuiz] = useState(null);
   const [quizResult, setQuizResult] = useState(null);
 
@@ -120,7 +121,7 @@ function Quiz() {
                     {quiz.questions[currentQuestion].optionA}
                   </Typography>
                 </label>
-              </ListItem>{" "}
+              </ListItem>
               {/* option B */}
               <ListItem className="p-0 ">
                 <label htmlFor={quiz.questions[currentQuestion].optionB} className="flex gap-3 w-full cursor-pointer items-center px-3 py-2">
@@ -142,7 +143,7 @@ function Quiz() {
                     {quiz.questions[currentQuestion].optionB}
                   </Typography>
                 </label>
-              </ListItem>{" "}
+              </ListItem>
               {/* option C */}
               <ListItem className="p-0 ">
                 <label htmlFor={quiz.questions[currentQuestion].optionC} className="flex gap-3 w-full cursor-pointer items-center px-3 py-2">
@@ -164,7 +165,7 @@ function Quiz() {
                     {quiz.questions[currentQuestion].optionC}
                   </Typography>
                 </label>
-              </ListItem>{" "}
+              </ListItem>
               {/* option D */}
               <ListItem className="p-0 ">
                 <label htmlFor={quiz.questions[currentQuestion].optionD} className="flex gap-3 w-full cursor-pointer items-center px-3 py-2">
@@ -212,18 +213,20 @@ function Quiz() {
         <div className="max-w-2xl m-auto ">
           <figure className=" flex justify-center">
             {((quizResult.score / quizResult.answeredQuestions.length) * 100).toFixed(1) >= 90 ? (
-              <img src="/assets/quiz/gold.png" width={"175px"} alt="dsfsdfsd" />
+              <img src="/assets/quiz/gold.png" width={"175px"} alt="excellent" />
             ) : ((quizResult.score / quizResult.answeredQuestions.length) * 100).toFixed(1) >= 75 ? (
-              <img src="/assets/quiz/silver.png" width={"175px"} alt="dsfsdfsd" />
+              <img src="/assets/quiz/silver.png" width={"175px"} alt="Very Good" />
+            ) : ((quizResult.score / quizResult.answeredQuestions.length) * 100).toFixed(1) >= 50 ? (
+              <img src="/assets/quiz/bronze.png" width={"175px"} alt="Good" />
             ) : (
-              <img src="/assets/quiz/bronze.png" width={"175px"} alt="dsfsdfsd" />
+              <img src="/assets/quiz/Fail.png" width={"175px"} alt="Good" />
             )}
-          </figure>{" "}
+          </figure>
           <div className="quiz-results mb-5 ct-1 font-semibold">
             <h2>
-              لديك <span className="ct-primary">{quizResult.score}</span> إجابة صحيحه من اصل <span className="ct-0">{quizResult.answeredQuestions.length}</span>{" "}
+              لديك <span className="ct-primary">{quizResult.score}</span> إجابة صحيحه من اصل <span className="ct-0">{quizResult.answeredQuestions.length}</span>
               سؤال
-            </h2>{" "}
+            </h2>
             <h2>
               النسبة المئوية : <span className="ct-0">{((quizResult.score / quizResult.answeredQuestions.length) * 100).toFixed(1) + "%"}</span>
             </h2>
@@ -234,7 +237,7 @@ function Quiz() {
                     {/* <span className="flex gap-1">
                       <span>
                         <CheckIcon height={18} size={18} />
-                      </span>{" "} */}
+                      </span> */}
                     {index + 1}
                     {/* </span> */}
                   </Chip>
@@ -243,12 +246,23 @@ function Quiz() {
                     {/* <span className="flex gap-1">
                       <span>
                         <XMarkIcon height={18} size={18} />
-                      </span>{" "} */}
+                      </span> */}
                     {index + 1}
                     {/* </span> */}
                   </Chip>
                 )
               )}
+            </div>
+            <div className="flex items-center gap-3">
+              {" "}
+              <span className="flex items-center gap-1">
+                صحيح
+                <Chip variant="flat" className=" block w-5 h-5" color="success"></Chip>
+              </span>{" "}
+              <span className="flex items-center gap-1">
+                خطأ
+                <Chip variant="flat" className=" block w-5 h-5" color="danger"></Chip>
+              </span>{" "}
             </div>
           </div>
           <div>
@@ -342,7 +356,7 @@ function Quiz() {
                           {quiz?.questions[index]?.optionB}
                         </Typography>
                       </label>
-                    </ListItem>{" "}
+                    </ListItem>
                     {/* option C */}
                     <ListItem
                       disabled={
@@ -383,7 +397,7 @@ function Quiz() {
                           {quizResult?.quiz.questions[index].optionC}
                         </Typography>
                       </label>
-                    </ListItem>{" "}
+                    </ListItem>
                     {/* option D */}
                     <ListItem
                       disabled={

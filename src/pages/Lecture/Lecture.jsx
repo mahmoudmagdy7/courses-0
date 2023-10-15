@@ -1,19 +1,25 @@
 import axios from "axios";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import siteConfig from "../../../public/site-config";
 import { Skeleton } from "@nextui-org/react";
 import { Play } from "@phosphor-icons/react";
+import { UserContext } from "../../Data/UserData";
 function Lecture() {
   const { lectureId } = useParams();
   const [lecture, setLecture] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const userData = useContext(UserContext);
+
   async function getLectureDate() {
     try {
       const { data } = await axios.get(siteConfig.ApiUrl + `/lectures/${lectureId}`);
       console.log(data.result);
       setIsLoading(false);
       setLecture(data.result);
+      userData.updateCurrentQuiz(data.result?.quizId);
+      console.log(userData.currentQuizId);
     } catch (e) {
       console.log(e);
     }

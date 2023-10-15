@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Badge,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -12,18 +11,19 @@ import {
   VisuallyHidden,
   useSwitch,
 } from "@nextui-org/react";
-import { Bell, MoonStars, Sun, Wallet } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import { MonitorPlay, MoonStars, SignOut, Sun, Wallet } from "@phosphor-icons/react";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 export default function NavBar(props) {
   const { Component, slots, isSelected, getBaseProps, getInputProps, getWrapperProps } = useSwitch(props);
 
   const [userToken, setUserToken] = useState(Cookies.get("userToken"));
-
+  const router = useNavigate();
   function logout() {
     setUserToken(null);
     Cookies.remove("userToken");
+    router("/");
   }
 
   function toggleMode() {
@@ -50,7 +50,7 @@ export default function NavBar(props) {
   }, []);
 
   return (
-    <Navbar className="cfg-main ct-1 ">
+    <Navbar maxWidth="xl" className="cfg-main ct-1 ">
       <div className="flex flex-col gap-2">
         <Component {...getBaseProps()}>
           <VisuallyHidden>
@@ -84,16 +84,18 @@ export default function NavBar(props) {
 
       {userToken ? ( // If logged in
         <NavbarContent id="notification">
-          <NavbarItem className="">
-            <Badge content="99+" shape="circle" color="danger">
-              <Button radius="full" isIconOnly aria-label="more than 99 notifications" variant="light">
-                <Bell size={24} />
-              </Button>
-            </Badge>
-          </NavbarItem>
-
           <NavbarItem className="hidden sm:flex">
-            <Button onClick={logout}>خروج</Button>
+            <Button isIconOnly variant="faded" color="primary" className="p-0" onClick={logout}>
+              <SignOut size={18} />
+            </Button>
+          </NavbarItem>
+          <NavbarItem>
+            <Button to={"/student/charge"} isIconOnly as={Link} color="success" variant="faded" aria-label="Take a photo">
+              <Wallet weight="fill" size="28" />
+            </Button>{" "}
+            <Button isIconOnly variant="faded" color="primary" className="p-0" as={Link} to="student">
+              <MonitorPlay size={28} weight="fill" />{" "}
+            </Button>
           </NavbarItem>
         </NavbarContent>
       ) : (
@@ -111,20 +113,6 @@ export default function NavBar(props) {
       )}
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          {/*item*/}
-
-          <ul>
-            <li>
-              {/* <Link to="charge" className="bg-red-50"> */}
-              <Button to={"/student/charge"} isIconOnly as={Link} color="warning" variant="faded" aria-label="Take a photo" className="text-red-500">
-                <Wallet size="20" />
-              </Button>{" "}
-              {/* </Link> */}
-            </li>
-          </ul>
-        </NavbarItem>
-
         <NavbarBrand>
           <Link to="/" className="flex items-center">
             <p className="font-bold text-inherit ct-0">Physiker</p>

@@ -1,35 +1,64 @@
-import { Link, Outlet } from "react-router-dom";
-import React from "react";
+import { Link, Outlet, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 
-import {
-  Card,
-  Typography,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-  Alert,
-} from "@material-tailwind/react";
-import { PresentationChartBarIcon, ShoppingBagIcon, UserCircleIcon, Cog6ToothIcon, InboxIcon, PowerIcon } from "@heroicons/react/24/solid";
+import { Card, Typography, List, ListItem, ListItemPrefix, Alert } from "@material-tailwind/react";
+
 import { ChevronRightIcon, ChevronDownIcon, CubeTransparentIcon, VideoCameraIcon } from "@heroicons/react/24/outline";
-import { Paperclip, SealQuestion } from "@phosphor-icons/react";
-
+import { ArrowsHorizontal, Paperclip, SealQuestion } from "@phosphor-icons/react";
+import { CheckboxIcon, Chip } from "@nextui-org/react";
+import { UserContext } from "../../Data/UserData";
 export default function LectureLayout() {
-  const [open, setOpen] = React.useState(0);
-  const [openAlert, setOpenAlert] = React.useState(true);
-
-  const handleOpen = (value) => {
-    setOpen(open === value ? 0 : value);
+  // const [open, setOpen] = React.useState(localStorage.getItem("aside-status"));
+  const { currentQuizId } = useContext(UserContext);
+  if (localStorage.getItem("aside-status") == null) {
+    localStorage.setItem("aside-status", "open"); // Store the boolean value directly
+  }
+  const handleOpen = () => {
+    if (localStorage.getItem("aside-status") == "open") {
+      console.log("Closing aside");
+      const aside = document.querySelector("#aside");
+      aside.style.cssText = "width: 0;";
+      localStorage.setItem("aside-status", "close"); // Store the boolean value directly
+    } else {
+      console.log("Opening aside");
+      const aside = document.querySelector("#aside");
+      aside.style.cssText = "width: 320px;";
+      localStorage.setItem("aside-status", "open"); // Store the boolean value directly
+    }
   };
 
+  useLayoutEffect(() => {
+    if (localStorage.getItem("aside-status") == "open") {
+      const aside = document.querySelector("#aside");
+      aside.style.cssText = "width: 320px;";
+    } else {
+      const aside = document.querySelector("#aside");
+      aside.style.cssText = "width: 0;";
+    }
+
+    if (window.innerWidth < 768) {
+      const aside = document.querySelector("#aside");
+      aside.style.cssText = "width: 0;";
+      localStorage.setItem("aside-status", "close"); // Store the boolean value directly
+    }
+  }, []);
+  console.log(currentQuizId);
   return (
     <section className="flex w-full h-full overflow-hidden">
-      <aside className=" w-80 ">
-        <Card className="h-full border-t-1 w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 rounded">
+      <aside id="aside" className="  flex w-80 relative box-content p-0 transition-width ">
+        <Chip
+          onClick={handleOpen}
+          variant="faded"
+          className="absolute end-0 top-5 flex justify-center items-center w-7 h-6 z-50 -translate-x-1/2 hover:cursor-pointer"
+          color="success"
+        >
+          <span className="p-0 w-5 h-5 flex">
+            {" "}
+            <ArrowsHorizontal className=" top-0 w-5 h-5" size="20" />
+          </span>
+        </Chip>
+        <Card className="h-full border-t-1 w-full max-w-[20rem] shadow-xl shadow-blue-gray-900/5 rounded overflow-hidden">
+          <div className="flex gap-4"></div>
           <div className="mb-2 flex items-center gap-4 p-4">
             <img src="/img/logo-ct-dark.png" alt="brand" className="h-8 w-8" />
             <Typography variant="h5" color="blue-gray">
@@ -46,7 +75,7 @@ export default function LectureLayout() {
                 الدرس
               </ListItem>
             </Link>{" "}
-            <Link to="quiz/6528820d4ca8ed44e1a79123" className="text-xl">
+            <Link to={"quiz/" + currentQuizId} className="text-xl">
               <ListItem className="items-center">
                 <ListItemPrefix>
                   <SealQuestion size={25} className="me-2" />
@@ -54,7 +83,7 @@ export default function LectureLayout() {
                 الاختبار
               </ListItem>
             </Link>{" "}
-            <Link to="quiz/6528820d4ca8ed44e1a79123" className="text-xl">
+            <Link to={"quiz/" + currentQuizId} className="text-xl">
               <ListItem className="items-center">
                 <ListItemPrefix>
                   <Paperclip size={25} className="me-2" />
@@ -63,23 +92,6 @@ export default function LectureLayout() {
               </ListItem>
             </Link>
           </List>
-          <Alert open={openAlert} className="mt-auto" onClose={() => setOpenAlert(false)}>
-            <CubeTransparentIcon className="mb-4 h-12 w-12" />
-            <Typography variant="h6" className="mb-1">
-              Upgrade to PRO
-            </Typography>
-            <Typography variant="small" className="font-normal opacity-80">
-              Upgrade to Material Tailwind PRO and get even more components, plugins, advanced features and premium.
-            </Typography>
-            <div className="mt-4 flex gap-3">
-              <Typography as="a" href="#" variant="small" className="font-medium opacity-80" onClick={() => setOpenAlert(false)}>
-                Dismiss
-              </Typography>
-              <Typography as="a" href="#" variant="small" className="font-medium">
-                Upgrade Now
-              </Typography>
-            </div>
-          </Alert>
         </Card>
       </aside>
       <main className="p-5 grow overflow-y-scroll">

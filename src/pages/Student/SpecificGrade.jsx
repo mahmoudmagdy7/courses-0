@@ -21,7 +21,7 @@ function SpecificGrade() {
     getAllSections();
   }, []);
   return (
-    <div>
+    <div className="max-w-7xl m-auto sm:px-5 px-3  ">
       <div className="m-auto">
         <h2 className="text-4xl"> sections</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dolorem maiores, molestias ratione unde sit</p>
