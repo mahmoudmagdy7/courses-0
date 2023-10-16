@@ -26,6 +26,7 @@ import Quiz from "./pages/Lecture/Quiz";
 import ChargeWallet from "./pages/Student/ChargeWallet";
 import UserData from "./Data/UserData";
 import StudentInvoice from "./pages/Student/StudentInvoice";
+import Profile from "./pages/Student/Profile";
 
 const route = createBrowserRouter([
   { path: "/auth/login", element: <Login /> },
@@ -35,7 +36,6 @@ const route = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/profile/:id", element: <h1> user profile page</h1> },
       {
         path: "/student",
         element: <StudentDashboard />,
@@ -45,13 +45,11 @@ const route = createBrowserRouter([
           { path: "section/:specificSectionId", element: <Section /> },
           { path: "charge", element: <ChargeWallet /> },
           { path: "invoice", element: <StudentInvoice /> },
+          { path: "profile", element: <Profile /> },
           {
             path: "lecture/:lectureId",
-            element: (
-              <UserData>
-                <LectureLayout />{" "}
-              </UserData>
-            ),
+            element: <LectureLayout />,
+
             children: [
               { path: "", element: <Lecture /> },
               {
@@ -85,7 +83,9 @@ const route = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <NextUIProvider>
     <ThemProvider>
-      <RouterProvider router={route} />
+      <UserData>
+        <RouterProvider router={route} />
+      </UserData>
     </ThemProvider>
   </NextUIProvider>
 );

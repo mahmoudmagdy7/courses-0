@@ -50,19 +50,19 @@ export default function SignUp() {
   // Loading spinner state
   // Input values initialization
 
-  const firstName = useRef("");
-  const lastName = useRef("");
-  const email = useRef("");
-  const password = useRef("");
-  const rePassword = useRef("");
-  const nationalId = useRef("");
-  const government = useRef("");
-  const city = useRef("");
-  const school = useRef("");
-  const phoneNumber = useRef("");
-  const parentNumber = useRef("");
-  const whatsAppNumber = useRef("");
-  const profilePicture = useRef("");
+  const firstName = useRef();
+  const lastName = useRef();
+  const email = useRef();
+  const password = useRef();
+  const rePassword = useRef();
+  const nationalId = useRef();
+  const government = useRef();
+  const city = useRef();
+  const school = useRef();
+  const phoneNumber = useRef();
+  const parentNumber = useRef();
+  const whatsAppNumber = useRef();
+  const profilePicture = useRef();
 
   // ======================== Form Submit Function  =============================
   async function handleSubmit(e) {
@@ -78,6 +78,7 @@ export default function SignUp() {
     formdata.append("nationalId", nationalId.current.value);
     formdata.append("government", government.current.value);
     formdata.append("city", city.current.value);
+    formdata.append("school", school.current.value);
     formdata.append("phone", phoneNumber.current.value);
     formdata.append("parentNumber", parentNumber.current.value);
     formdata.append("whatsAppNumber", whatsAppNumber.current.value);
@@ -116,6 +117,7 @@ export default function SignUp() {
     formdata.append("rePassword", rePassword.current.value);
     formdata.append("nationalId", nationalId.current.value);
     formdata.append("government", government.current.value);
+    formdata.append("school", school.current.value);
     formdata.append("city", city.current.value);
     formdata.append("phone", phoneNumber.current.value);
     formdata.append("parentNumber", parentNumber.current.value);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import siteConfig from "../../../public/site-config";
 import { Card, CardBody, CardFooter, Chip, Image } from "@nextui-org/react";
 import { Link, useParams } from "react-router-dom";
@@ -58,7 +58,7 @@ function Section() {
       console.log(e.response.data.msgError);
     }
   }
-  useEffect(() => {
+  useLayoutEffect(() => {
     getAllLectures();
   }, []);
   return (

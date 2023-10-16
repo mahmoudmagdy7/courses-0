@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { Eye, EyeSlash, Lock, Phone } from "@phosphor-icons/react";
 import axios from "axios";
@@ -6,6 +6,7 @@ import { Toaster, toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import siteConfig from "/public/site-config";
+import { UserContext } from "../../Data/UserData";
 
 /**
    =========================================+
@@ -17,6 +18,7 @@ import siteConfig from "/public/site-config";
    */
 
 export default function Login() {
+  const { getLoggedInUserData } = useContext(UserContext);
   const router = useNavigate();
   // Show and hide password
   const [isVisible, setIsVisible] = useState(false);
@@ -44,10 +46,13 @@ export default function Login() {
       setIsSubmit(false); // Turn off loading spinner after getting the response
       Cookies.set("userToken", data.token, { expires: 1 }); // Expires after 1 days
       // Notify the student that login success
-      toast.success(" تم تسجيل الدخول بنجاح ");
-      toast.loading(" جاري تحويلك للصفحة الرئيسية "); // !redirect the user to home page
+      toast.success(" تم تسجيل الدخول بنجاح ", { duration: 1000 });
+      toast.loading(" جاري تحويلك للصفحة الرئيسية ", { duration: 1000 }); // !redirect the user to home page
 
-      router("/student");
+      await getLoggedInUserData();
+      setTimeout(() => {
+        router("/student");
+      }, 1020);
     } catch (error) {
       const { msgError } = error.response?.data;
       if (msgError === "User not found") {
