@@ -30,6 +30,7 @@ import Profile from "./pages/Student/Profile";
 
 const route = createBrowserRouter([
   { path: "/auth/login", element: <Login /> },
+  { path: "/auth/login", element: <Login /> },
   { path: "/auth/signUp", element: <SignUp /> },
   {
     path: "/",

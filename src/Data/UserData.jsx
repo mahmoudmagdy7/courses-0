@@ -32,6 +32,8 @@ function UserData({ children }) {
   // }
 
   let userId = "";
+  let userData = "";
+
   if (userToken) {
     userId = jwtDecode(userToken).id;
     // Use the userId or perform other actions with the token.
