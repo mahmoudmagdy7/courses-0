@@ -35,7 +35,9 @@ function UserData({ children }) {
   let userData = "";
   let userImages = "";
   let userDate = "";
+
   let userFromTest = "";
+
   if (userToken) {
     userId = jwtDecode(userToken).id;
     // Use the userId or perform other actions with the token.
