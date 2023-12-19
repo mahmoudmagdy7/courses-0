@@ -33,6 +33,7 @@ function UserData({ children }) {
 
   let userId = "";
   let userData = "";
+  let userImages = "";
 
   if (userToken) {
     userId = jwtDecode(userToken).id;
