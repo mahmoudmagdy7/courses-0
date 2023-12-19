@@ -7,6 +7,7 @@ import { Avatar, Badge, Button } from "@nextui-org/react";
 import { CheckBadgeIcon, LightBulbIcon } from "@heroicons/react/24/solid";
 import { UserContext } from "../Data/UserData";
 import { Cardholder, MonitorPlay, SignOut, UserCircle, Wallet } from "@phosphor-icons/react";
+import { generateSecret } from "jwt-key-generator";
 export default function Layout() {
   const [open, setOpen] = React.useState(false);
   const { loggedUser, getLoggedInUserData } = useContext(UserContext);
@@ -16,6 +17,11 @@ export default function Layout() {
     document.querySelector("#nav-toggler").click();
     setOpen(false);
   };
+  (async function () {
+    let secret = await generateSecret("HS256");
+    console.log(secret);
+  })();
+
   return (
     <div>
       <React.Fragment>

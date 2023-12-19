@@ -4,15 +4,15 @@ import { Stepper, Step, Button } from "@material-tailwind/react";
 import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import siteConfig from "../../../dist/site-config";
 import Cookies from "js-cookie";
-import { Dot } from "@phosphor-icons/react";
 import html2canvas from "html2canvas";
+import siteConfig from "../../../public/site-config";
 function ChargeWallet() {
   const [activeStep, setActiveStep] = useState(0);
   const [isLastStep, setIsLastStep] = useState(false);
   const [isFirstStep, setIsFirstStep] = useState(false);
   const [chargeTicket, setChargeTicket] = useState(null);
+  // const ver = JWTVerifier.verify("sdfsdf");
 
   const dateString = chargeTicket?.createdAt;
   const date = new Date(dateString);

@@ -3,7 +3,6 @@ import { createContext, useState } from "react";
 import siteConfig from "../../public/site-config";
 import jwtDecode from "jwt-decode";
 import Cookies from "js-cookie";
-import { jwt } from "jsonwebtoken";
 export const UserContext = createContext();
 
 function UserData({ children }) {
@@ -12,14 +11,14 @@ function UserData({ children }) {
   const [loggedUser, setLoggedUser] = useState(null);
   const userToken = Cookies.get("userToken");
 
-  const verifyToken = (token, secretKey) => {
-    try {
-      const decoded = jwt.verify(token, secretKey);
-      return decoded;
-    } catch (error) {
-      return null; // Return null if the token is not valid
-    }
-  };
+  // const verifyToken = (token, secretKey) => {
+  //   try {
+  //     const decoded = jwt.verify(token, secretKey);
+  //     return decoded;
+  //   } catch (error) {
+  //     return null; // Return null if the token is not valid
+  //   }
+  // };
 
   // const decoded = verifyToken("token", "secretKey");
 
